@@ -1,0 +1,5 @@
+module LeosFfi {
+    header "leos_ffi.h"
+    link "leos_ffi"
+    export *
+}

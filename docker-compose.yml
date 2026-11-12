@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: leos-postgres
+    environment:
+      POSTGRES_USER: leos
+      POSTGRES_PASSWORD: leos
+      POSTGRES_DB: leos
+    ports:
+      - "5432:5432"
+    volumes:
+      - leos-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U leos -d leos"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  server:
+    build:
+      context: .
+      dockerfile: crates/leos-server/Dockerfile
+    container_name: leos-server
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      LEOS_DATABASE_URL: postgres://leos:leos@postgres:5432/leos
+      LEOS_BIND_ADDR: 0.0.0.0:8080
+      LEOS_DEV_MODE: "true"
+      LEOS_SEED: "true"
+      RUST_LOG: leos_server=info
+    ports:
+      - "8080:8080"
+
+volumes:
+  leos-pgdata:

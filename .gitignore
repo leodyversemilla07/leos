@@ -1,0 +1,28 @@
+# Rust
+/target
+**/*.rs.bk
+
+# The server process
+.leos-server.pid
+
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+android/captures/
+*.apk
+*.aab
+
+# iOS
+ios/build/
+ios/DerivedData/
+*.xcuserstate
+xcuserdata/
+
+# Editors and tools
+.DS_Store
+*.swp
+.idea/
+.vscode/

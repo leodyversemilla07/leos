@@ -1,0 +1,17 @@
+[package]
+name = "leos-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Shared domain logic for the Leos PHP wallet: money, PH phone numbers, ledger rules, EMVCo QR codec, wallet policy."
+
+[dependencies]
+argon2 = { version = "0.5", features = ["std"] }
+rand.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+pretty_assertions = "1"

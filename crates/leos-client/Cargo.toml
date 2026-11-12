@@ -1,0 +1,20 @@
+[package]
+name = "leos-client"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "The on-device core of the Leos wallet app: the API client, the PIN key derivation and the QR reader, all callable from a native mobile UI."
+
+[dependencies]
+leos-core.workspace = true
+chrono = { version = "0.4", features = ["serde"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls", "gzip", "charset"] }
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "sync"] }
+tracing.workspace = true
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full"] }

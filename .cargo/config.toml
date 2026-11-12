@@ -1,0 +1,17 @@
+# Cross compilation settings for the Leos mobile apps.
+#
+# The Rust core is compiled by the NDK's clang wrappers. The API level is
+# 24, which is the lowest the app supports and covers every device in use
+# in the Philippines.
+
+[target.aarch64-linux-android]
+linker = "/home/friend/Android/Sdk/ndk/30.0.15729638/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android24-clang"
+rustflags = ["-C", "link-arg=-Wl,-z,max-page-size=16384"]
+
+[target.armv7-linux-androideabi]
+linker = "/home/friend/Android/Sdk/ndk/30.0.15729638/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi24-clang"
+rustflags = ["-C", "link-arg=-Wl,-z,max-page-size=16384"]
+
+[target.x86_64-linux-android]
+linker = "/home/friend/Android/Sdk/ndk/30.0.15729638/toolchains/llvm/prebuilt/linux-x86_64/bin/x86_64-linux-android24-clang"
+rustflags = ["-C", "link-arg=-Wl,-z,max-page-size=16384"]
