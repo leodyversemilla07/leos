@@ -66,22 +66,33 @@ the currency is invented.
 
 ## Running it
 
-### The server
+### Everything, in containers
 
 ```bash
-# Postgres
+docker compose up -d
+```
+
+That brings up Postgres and the API, with the demo data seeded. The API
+answers on `http://127.0.0.1:8080`.
+
+```bash
+# The whole flow, end to end
+cargo run -p leos-cli -- demo
+```
+
+### The server on its own
+
+```bash
 docker compose up -d postgres
 
-# The API, with demo data
 LEOS_DATABASE_URL=postgres://leos:leos@localhost:5432/leos \
 LEOS_DEV_MODE=true \
 LEOS_SEED=true \
 cargo run -p leos-server
 ```
 
-The API listens on `http://127.0.0.1:8080` and creates its own schema on
-first run. `scripts/dev-server.sh start|stop|restart|logs` wraps this for
-day to day use.
+The API creates its own schema on first run. `scripts/dev-server.sh
+start|stop|restart|logs` wraps this for day to day use.
 
 ### The whole flow, end to end
 

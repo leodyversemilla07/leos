@@ -32,6 +32,11 @@ services:
       RUST_LOG: leos_server=info
     ports:
       - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   leos-pgdata:
